@@ -1,37 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>注册</title>
-
-</head>
-<body>
-<div class="container">
-    <div style="color:red;">{{msg}}</div>
-    <form action="{% url 'users:user_register' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">用户名</label>
-            <input required type="text" class="form-control" id="username" placeholder="用户名" name="username">
-        </div>
-
-        <div class="form-group">
-            <label for="password">密码</label>
-            <input required type="password" class="form-control" id="password" placeholder="密码" name="password">
-        </div>
-
-        <div class="form-group">
-            <label for="confirmpwd">确认密码</label>
-            <input required type="password" class="form-control" id="confirmpwd" placeholder="密码" name="confirmpwd">
-        </div>
-
-        <div class="form-group">
-            <label for="nickname">昵称</label>
-            <input required type="text" class="form-control" id="nickname" placeholder="用户昵称" name="nickname">
-        </div>
-
-        <button type="submit" class="btn btn-default register">注册</button>
-    </form>
-</div>
-</body>
+<html>
+	<head>
+		{% load static %}
+		<meta charset="UTF-8">
+		<title>用户注册</title>
+		<link rel="stylesheet" href="/static/css/users/style.css">
+		<link rel="stylesheet" href="/static/css/users/login.css">
+		<link rel="stylesheet" href="/static/css/users/register.css">
+		<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js" ></script>
+		<script type="text/javascript" src="/static/js/style.js" ></script>
+		<script type="text/javascript" src="/static/js/jquery.validate.min.js" ></script>
+		<script type="text/javascript" src="/static/js/form.js" ></script>
+	</head>
+	<body>
+		<div id="login_top">
+			<ul class="login_top_left">
+				<li class="login_top_left1"><a href="../mall.html"></a></li>
+				<li class="login_top_left2">注册</li>
+			</ul>
+			
+			<ul class="login_top_right">
+				<li class="login_top_right1">100%正品</li>
+				<li class="login_top_right2">同城一时达</li>
+				<li class="login_top_right3">金牌客服</li>
+			</ul>
+		</div>
+		
+		<div id="login_center">
+			<div class="login_center_left">
+				<a href=""><img src="../images/login/0223xinrenzhuce.jpg" /></a>
+			</div>
+			
+			<div class="login_center_right">
+				<p id="goLogin">
+					我已经注册，
+					<a href="login.html">登录»</a>	
+				</p>
+				<form id="register_form" action="{% url 'users:user_register' %}" method="post">
+					{% csrf_token %}
+					<!--账号输入框-->
+					<div id="input_cell">
+						<!--<label id="account_label" for="account">请输入手机号</label>-->
+						<input name="phonenum" id="account" type="text" placeholder="请输入用户名" />
+						<span id="account_ok" class="ok"></span>
+						<div id="account_error" class="error_text">
+							<span class="error_V"></span>
+							<span class="error_Prompt">键盘大写锁定已打开，请注意大小写</span>
+						</div>
+					</div>
+					
+					
+					<!--验证码输入框-->
+					<div id="input_cell1">
+						<!--<label id="verification_label" for="verification">请输入验证码</label>-->
+						<input id="verification" type="text" placeholder="请输入验证码"/>
+						<span id="verification_ok" class="ok"></span>
+						<div id="verification_error" class="error_text">
+							<span class="error_V"></span>
+							<span class="error_Prompt">键盘大写锁定已打开，请注意大小写</span>
+						</div>
+						<div id="img_code">
+							<img src="../images/login/yanZhengCodeNew.ashx.png" />
+						</div>
+						<a class="changeImg" href="javascript:;">看不清？换一张</a>
+					</div>
+					
+					<!--验证码输入框-->
+					<div id="input_cell2">
+						<!--<label id="verification_label" for="verification">请输入验证码</label>-->
+						<input id="verification1" type="text" placeholder="请输入校证码"/>
+						<span id="verification_ok1" class="ok"></span>
+						<div id="verification_error1" class="error_text">
+							<span class="error_V"></span>
+							<span class="error_Prompt">键盘大写锁定已打开，请注意大小写</span>
+						</div>
+						
+						<!--免费获取校验码-->
+						<a class="getCheckCode">免费获取校验码</a>
+					</div>
+					
+					<!--密码输入框-->
+					<div id="input_cell3">
+						<!--<label id="pasword_label" for="passWord">请输入密码</label>-->
+						<input name="password" id="passWord" type="password" placeholder="请输入密码"  />
+						<span id="passWord_ok" class="ok"></span>
+						<div id="passWord_error" class="error_text">
+							<span class="error_V"></span>
+							<span class="error_Prompt">键盘大写锁定已打开，请注意大小写</span>
+						</div>
+					</div>
+					
+					
+					<!--确认密码输入框-->
+					<div id="input_cell4">
+						<!--<label id="pasword_label" for="passWord">请输入确认密码</label>-->
+						<input name="confirmpwd" id="passWord2" type="password" placeholder="请确认密码"  />
+						<span id="passWord_ok1" class="ok"></span>
+						<div id="passWord_error1" class="error_text">
+							<span class="error_V"></span>
+							<span class="error_Prompt">键盘大写锁定已打开，请注意大小写</span>
+						</div>
+					</div>
+					
+					<!--登录-->
+					<div id="login_cell">
+						<input class="register_btn" type="submit" value="同意协议并注册" />
+					</div>
+				</form>
+				
+				<p id="otherWays">
+					<a href="" class="clause">《北屋网服务条款》</a>
+				</p>
+				
+			</div>
+		</div>
+		
+		<div id="login_bottom">
+			<p>			
+				Copyright © 2018 北屋网(www.beiwu.com) 版权所有
+				<a href="" target="_blank">京ICP备12022216号-2</a>
+			</p>
+			<p>北屋虽然好，但需克制使用信用卡</p>
+		</div>
+		
+	</body>
 </html>

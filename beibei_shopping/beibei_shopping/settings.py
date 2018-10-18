@@ -25,7 +25,7 @@ SECRET_KEY = '#4kwr&!i46x3ao5u^49%d5y)xf0gg%lw3ikrkth_^654_b_r6t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -79,6 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'beibei_shopping',
         'USER': 'root',
+        'HOST': '',
         'PASSWORD': 'zxc994520',
         'PORT': '3306',
         'CHARSET': 'utf8',
@@ -126,3 +127,7 @@ STATIC_URL = '/static/'
 STATICFIES_DIRS = [
     os.path.join(BASE_DIR,"static"),
 ]
+
+
+LOGIN_URL = '/users/login/'
+

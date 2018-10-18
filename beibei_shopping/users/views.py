@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 from . import models
 
@@ -42,17 +43,6 @@ def user_register(request):
         password = request.POST.get("password").strip()
         confirmpwd = request.POST.get("confirmpwd").strip()
         nickname = request.POST.get("nickname").strip()
-        # avatar = request.FILES.get("avatar",'static/img/beibei.jpg')
-
-        # code = request.POST["code"]
-        #
-        # mycode = request.session["code"]
-        # if code.upper() != mycode.upper():
-        #     return render(request,"blog/add_user.html",{"msg":"验证码错误，请重新输入！！"})
-        #
-        # # 删除session中的验证码
-        # del request.session["code"]
-
 
         # 数据校验
         if len(username) < 1:
@@ -84,9 +74,24 @@ def user_register(request):
 
 
 
+@login_required
 def user_logout(request):
     '''注销用户'''
     logout(request)
     return render(request, "users/login.html", {"msg": "退出成功！"})
+
+
+@login_required
+def user_info(request):
+
+    pass
+
+
+
+
+
+
+
+
 
 
