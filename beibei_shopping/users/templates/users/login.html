@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户登录</title>
+    <title>登录</title>
 </head>
 <body>
+<div class="container">
+    <form action="{% url 'users:user_login' %}" method="post">
+        {% csrf_token %}
 
+        <input required type="text" class="form-control" id="username" placeholder="用户名" name="username">
+
+        <input required type="password" class="form-control" id="password" placeholder="密码" name="password">
+
+
+        <button type="submit" class="btn btn-default login">登录</button>
+    </form>
 
 </body>
 </html>
