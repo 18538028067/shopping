@@ -1,0 +1,18 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+
+
+class Store(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255,unique=True,verbose_name="店铺名称")
+    cover = models.ImageField(upload_to="static/images/store",default="static/images/store/beibei.png")
+    intro = models.TextField(verbose_name="店铺描述")
+    # 开店时间
+    opener_time = models.DateTimeField(auto_now_add=True,verbose_name="开店时间")
+    # 0表示正常营业，1表示暂停营业，2表示永久关闭
+    status = models.IntegerField(default=0,verbose_name="店铺状态")
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="店铺所属的用户")
+
+
+
