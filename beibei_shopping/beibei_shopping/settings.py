@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'commons',
+    'store',
+    'goods',
+
 ]
 
 MIDDLEWARE = [
@@ -79,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'beibei_shopping',
         'USER': 'root',
-        'HOST': '',
+        'HOST': '192.168.13.45',
         'PASSWORD': 'zxc994520',
         'PORT': '3306',
         'CHARSET': 'utf8',

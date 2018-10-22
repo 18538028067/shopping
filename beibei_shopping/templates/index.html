@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h1>项目首页</h1>
+    <h1>{{msg}}</h1>
+    <h4><a href="/">网站首页</a></h4>
+    <h4><a href="{% url 'users:user_login' %}">用户登录</a></h4>
+    <h4><a href="{% url 'users:user_register' %}">用户注册</a></h4>
+    <h4><a href="{% url 'users:user_info' %}">个人信息</a></h4>
+    <h4><a href="{% url 'store:add' %}">开店</a></h4>
+    <h4><a href="{% url 'users:user_logout' %}">用户退出</a></h4>
+</body>
+</html>

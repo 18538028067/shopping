@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -12,10 +14,17 @@ from . import models
 def user_login(request):
     '''用户登录'''
     if request.method == "GET":
-        return render(request, "users/login.html", {})
+        try:
+            next_url = request.GET["next"]
+        except:
+            next_url = "/"
+
+        return render(request, "users/login.html", {"next_url":next_url})
     elif request.method == "POST":
         username = request.POST["username"].strip()
         password = request.POST["password"].strip()
+
+        next_url = request.POST.get("next","/")
 
         # 验证码
         # code = request.POST["code"].strip()
@@ -25,7 +34,7 @@ def user_login(request):
             if user.is_active:
                 # 将验证通过的用户信息保存在request
                 login(request,user)
-                return render(request, "users/userinfo.html", {"user": user})
+                return redirect(next_url)
             else:
                 return render(request, "users/login.html", {"msg": "您的账号已经被锁定，请联系管理员"})
         else:
@@ -84,14 +93,5 @@ def user_logout(request):
 @login_required
 def user_info(request):
 
-    pass
-
-
-
-
-
-
-
-
-
+    return render(request,"users/userinfo.html",{})
 
